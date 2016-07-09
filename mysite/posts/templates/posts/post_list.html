@@ -1,0 +1,50 @@
+{% extends 'posts/base.html' %}
+{% block content %}
+
+<div class="col-sm-6 col-sm-offset-3">
+<h1>{{ title }}</h1>
+<form method="GET" action="">
+    <input type="text" name="q" placeholder="Search Posts" value="{{ request.GET.q }}" />
+    <input type="submit" value="Search" />
+</form>
+
+{% for omg in object_list %}
+<div class="row">
+  <div class="col-sm-12">
+    <div class="thumbnail">
+        {% if omg.image %}
+        <img src="{{ omg.image.url }}" class="img-responsive" />
+        {% endif %}
+      <!--<img src="..." alt="...">-->
+      <div class="caption post-detail-item">
+      <h3><a href="{{ omg.get_absolute_url }}">{{ omg.title }}</a><br/></h3>
+          <p>Published {{ omg.publish }}</p>
+          <!--{{ omg.timestamp|timesince }}-->
+        {% if omg.draft %}<span style="color:red">Draft Mode</span><br/>{% endif %}
+        {% if omg.publish > today %}<span style="color:red">Future Post</span><br/>{% endif %}
+        {% if omg.user %}<p>Author: {{ omg.user }}</p>{% endif %}
+        <p class="">{{ omg.get_markdown|truncatechars_html:120 }}</p>
+        <p><a href="{{ omg.get_absolute_url }}" class="btn btn-primary" role="button">View</a></p>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endfor %}
+<div class="pagination">
+    <span class="step-links">
+        {% if object_list.has_previous %}
+            <a href="?page={{ object_list.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ object_list.number }} of {{ object_list.paginator.num_pages }}.
+        </span>
+
+        {% if object_list.has_next %}
+            <a href="?page={{ object_list.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+</div>
+{% endblock content %}

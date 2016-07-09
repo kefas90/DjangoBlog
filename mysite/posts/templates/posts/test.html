@@ -1,0 +1,39 @@
+{% extends 'posts/base.html' %}
+
+{% block content %}
+
+<h1>Template for {{ title }} is working</h1>
+
+{% comment "optional note" %}
+{% endcomment %} ﻿
+
+{% for omg in object_list %}
+
+<div class="row">
+<div class="col-sm-6">
+<a href="{{ omg.get_absolute_url }}">{{ omg.title }}</a><br/>
+{{ omg.id }}<br/>
+{{ omg.content|linebreaks|truncatechars:60 }}<br/>
+{{ omg.timestamp }}<br/>
+{{ omg.updated }}<br/><br/><br/>
+
+</div>
+
+
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <!--<img src="..." alt="...">-->
+      <div class="caption">
+        <h3>Thumbnail label</h3>
+        <p>...</p>
+        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+      </div>
+    </div>
+  </div>
+
+
+
+
+{% endfor %}
+</div>
+{% endblock content %}

@@ -1,0 +1,16 @@
+h1 {
+    color: #0080ff;
+}
+
+h2 {
+    color: 808080;
+}
+
+.wmd-panel{
+    margin-right: 0px !important;
+    margin-left: 0px !important;
+}
+
+.comment-reply{
+    display:none;
+}

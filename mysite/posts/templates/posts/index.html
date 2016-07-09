@@ -1,0 +1,31 @@
+<html>
+
+<body>
+
+<h1>Template for {{ title }} is working</h1>
+
+{% comment "optional note" %}
+{% endcomment %} ﻿
+
+
+
+{% for omg in object_list %}
+
+
+{% url 'detail' id=omg.id %}<br/>
+
+<a href="{{ omg.get_absolute_url }}">{{ omg.title }}</a><br/>
+{{ omg.id }}<br/>
+{{ omg.content }}<br/>
+{{ omg.timestamp }}<br/>
+{{ omg.updated }}<br/><br/><br/>
+
+
+{% endfor %}
+
+</body>
+
+
+
+
+</html>
